@@ -1,4 +1,4 @@
 # project-scan
 
-to install all dependancies use:
+to install all dependencies use:
 yarn install
