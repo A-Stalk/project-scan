@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 // LoginForm.jsx
 import { Formik } from 'formik';
 import { useState } from 'react';
@@ -10,10 +11,11 @@ import LoginInput from './LoginInput';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [pswrdVisible, setPswrdVisible] = useState(false);
 
-  const handleFormSubmit = async (values, { setSubmitting }) => {
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     console.log('Submitting form...', values);
     try {
       const response = await fetch(
@@ -33,8 +35,13 @@ const Login = () => {
       if (response.ok) {
         const data = await response.json();
         const { accessToken, expire } = data;
-        console.log('Login successful:', data);
+
+        // Set Bearer token in the Authorization header for subsequent API requests
+        const bearerToken = `Bearer ${accessToken}`;
+        localStorage.setItem('accessToken', bearerToken);
+
         dispatch(login({ accessToken, expire }));
+        navigate('/'); // Redirect to dashboard after successful login
       } else {
         const errorData = await response.json();
         console.log('Login failed:', errorData);
@@ -42,14 +49,16 @@ const Login = () => {
     } catch (error) {
       console.log('An error occurred:', error);
     }
+
     setSubmitting(false);
+    resetForm();
   };
 
   return (
     <Formik
       initialValues={{ login: '', password: '' }}
       validationSchema={AuthFormSchema}
-      onSubmit={handleFormSubmit}
+      onSubmit={handleSubmit}
     >
       {({ isValid, dirty, isSubmitting }) => (
         <div className={styles.form}>

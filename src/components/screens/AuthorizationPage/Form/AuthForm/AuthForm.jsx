@@ -1,3 +1,5 @@
+// AuthForm.jsx
+
 import { ReactComponent as Lock } from '@/assets/authForm__login_lock.svg';
 import styles from './AuthForm.module.scss';
 import Tabs from './Tabs';

@@ -1,3 +1,5 @@
+// AuthorizationPage.jsx
+
 import Image from '@/assets/img/authorization_left.svg';
 import styles from './AuthorizationPage.module.scss';
 import AuthForm from './Form/AuthForm/AuthForm';

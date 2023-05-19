@@ -1,3 +1,5 @@
+// Yup.js
+
 import moment from 'moment';
 import * as yup from 'yup';
 import { validateInn } from './inn_validation';
@@ -32,13 +34,11 @@ export const searchFormSchema = yup.object().shape({
 
   startDate: yup
     .date()
-    .nullable()
     .required('Введите корректные данные')
     .max(yup.ref('endDate'), 'Дата начала должна быть меньше даты конца'),
 
   endDate: yup
     .date()
-    .nullable()
     .required('Введите корректные данные')
     .min(yup.ref('startDate'), 'Дата конца должна быть больше даты начала')
     .max(today, 'Дата не должна быть больше текущей'),

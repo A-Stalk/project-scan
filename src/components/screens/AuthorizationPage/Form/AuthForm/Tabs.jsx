@@ -1,3 +1,5 @@
+// Tabs.jsx
+
 import { useState } from 'react';
 import Login from './Login';
 import styles from './Tabs.module.scss';
