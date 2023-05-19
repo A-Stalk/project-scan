@@ -1,0 +1,48 @@
+.tabs {
+  @apply flex justify-around gap-4;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.02em;
+}
+
+.sign_in,
+.register {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.02em;
+  border-bottom: 0.2rem solid #c7c7c7;
+  height: 1.7em;
+  text-align: center;
+  color: #c7c7c7;
+  cursor: pointer;
+  &:hover {
+    color: #029491;
+    border-color: #029491;
+  }
+}
+
+div[class*='_active'] {
+  text-align: center;
+  border-bottom: 0.2rem solid #029491;
+  color: #029491;
+}
+
+.sign_in,
+.sign_in_active {
+  @apply w-20;
+}
+
+.register,
+.register_active {
+  @apply w-48;
+}
+
+.tab_content_inactive {
+  display: none;
+}
+
+.tab_content {
+  @apply mt-4 flex justify-center items-center;
+}

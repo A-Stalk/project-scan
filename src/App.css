@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+
+  src: local('Inter'), url('./fonts/Inter-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Ferry';
+  font-style: normal;
+  font-weight: 900;
+
+  src: local('Ferry'), url('./fonts/ferry_black.otf') format('opentype');
+}
+
+body {
+  @apply font-inter;
+  margin: 0 auto;
+}
+h1,
+h2 {
+  @apply font-ferry;
+}
+
+* {
+  box-sizing: border-box;
+}

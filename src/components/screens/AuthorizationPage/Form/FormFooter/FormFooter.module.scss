@@ -1,0 +1,29 @@
+.footer {
+  @apply mt-2 flex flex-col gap-5;
+  & p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.02em;
+
+    color: #949494;
+  }
+}
+.options {
+  @apply flex justify-start gap-6;
+}
+.icons {
+  @apply px-4 py-2 flex items-center;
+  border: 2px solid #7a9ed9;
+  border-radius: 3px;
+  cursor: pointer;
+  &:hover {
+    opacity: 70%;
+  }
+}
+
+@media (max-width: 767px) {
+  .options {
+    @apply justify-between gap-2;
+  }
+}

@@ -1,0 +1,84 @@
+.home {
+  & h1 {
+    @apply uppercase text-5xl;
+    line-height: 65px;
+    letter-spacing: 0.01em;
+  }
+  & h2 {
+    @apply uppercase text-4xl;
+  }
+  & h4 {
+    @apply text-xl;
+  }
+}
+
+.description_section {
+  @apply flex justify-between items-start mb-10;
+}
+.left {
+  @apply w-3/5 md:w-full flex flex-col items-start gap-14;
+
+  & .button {
+    @apply flex justify-center bg-button w-2/4 h-14 mt-8 text-main text-xl rounded-lg hover:bg-opacity-90;
+  }
+}
+
+.desc_image {
+  @apply w-full;
+}
+
+.slider_section {
+  @apply mt-32 flex flex-col;
+}
+
+.slider_image {
+  @apply bg-[url('@/assets/img/home__scroll_section.svg')] bg-no-repeat bg-contain w-full;
+  height: 40em;
+}
+
+.slider_image,
+.rates_section {
+  @apply mb-20;
+}
+
+.rates_section_title {
+  @apply mb-10;
+}
+
+// Mobile
+@media (max-width: 767px) {
+  .home {
+    & h1 {
+      @apply text-2xl;
+      line-height: 34px;
+      letter-spacing: 0.01em;
+    }
+    & h2 {
+      @apply text-2xl;
+      line-height: 34px;
+      letter-spacing: 0.01em;
+    }
+    & h4 {
+      @apply text-lg;
+    }
+  }
+
+  .description_section {
+    @apply flex-col items-center mb-10;
+  }
+  .left {
+    @apply w-full gap-10;
+
+    & button {
+      @apply w-full h-14 mt-8;
+    }
+  }
+
+  .slider_image {
+    @apply bg-cover;
+    background-position: 0% 20%;
+    background-size: 180vw;
+    height: 40vh;
+    overflow: hidden;
+  }
+}

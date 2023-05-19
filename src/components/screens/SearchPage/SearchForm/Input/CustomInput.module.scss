@@ -1,0 +1,57 @@
+.label {
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.03em;
+}
+.input_section {
+  @apply flex flex-col gap-3;
+}
+
+.input_inner {
+  @apply flex flex-col;
+}
+
+.input,
+.error_input {
+  @apply w-56 h-10 px-3 border-2 rounded-lg shadow-sm;
+  padding-left: 1rem;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.03em;
+  appearance: none;
+  &:hover {
+    outline: none;
+    border: 2px solid #bbb;
+  }
+}
+
+.error_input {
+  border-color: rgba(255, 89, 89, 1);
+  color: #ff5959;
+}
+
+.error_message {
+  @apply h-2 w-56;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.01em;
+  color: #ff5959;
+  text-align: center;
+}
+
+.input ::-webkit-outer-spin-button,
+.input ::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+@media (max-width: 767px) {
+  .input,
+  .error_input {
+    @apply w-full;
+  }
+
+  .error_message {
+    @apply h-2 w-full;
+  }
+}

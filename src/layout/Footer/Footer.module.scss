@@ -1,0 +1,26 @@
+.footer {
+  @apply w-full h-36 bg-footer flex justify-center items-center;
+}
+
+.inside {
+  @apply px-7 w-full h-36 flex justify-between items-center;
+  max-width: 1320px;
+}
+
+.logo {
+  @apply w-52;
+}
+
+.contacts {
+  @apply text-right text-main text-sm;
+}
+
+@media (max-width: 767px) {
+  .inside {
+    @apply px-2;
+  }
+
+  .logo {
+    @apply w-32;
+  }
+}

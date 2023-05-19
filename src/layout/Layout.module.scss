@@ -1,0 +1,5 @@
+.layout {
+  @apply w-full h-full flex  justify-between items-center bg-main;
+  position: absolute;
+  flex-flow: column;
+}

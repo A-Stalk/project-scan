@@ -1,0 +1,68 @@
+.form {
+  @apply px-8 py-10 relative flex flex-col justify-evenly border-2 rounded-lg shadow-3xl hover:shadow-2xl w-full gap-3;
+  width: 100%;
+  // width: 50rem;
+  height: 100%;
+}
+
+.form_top {
+  @apply flex justify-between;
+
+  .form_left {
+    @apply flex flex-col justify-between gap-3;
+  }
+
+  .checkbox_section {
+    @apply flex flex-col gap-4;
+  }
+}
+
+.form_bottom {
+  @apply flex justify-between items-center;
+
+  .button_section {
+    @apply flex flex-col gap-3;
+    .button {
+      @apply bg-button w-full h-14 mt-8 text-main text-xl rounded-lg hover:bg-opacity-90;
+      width: 20rem;
+      &:disabled {
+        @apply opacity-50 hover:bg-opacity-100;
+      }
+    }
+    & .required_text {
+      color: #949494;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .form {
+    @apply px-4 py-10 gap-5 justify-between;
+
+    .form_top {
+      @apply w-full;
+
+      .form_left {
+        @apply w-full gap-5 justify-between;
+      }
+    }
+  }
+  .form_right,
+  .checkbox_section {
+    display: none;
+  }
+  .form_bottom {
+    @apply w-full flex-col gap-5;
+
+    .button_section {
+      @apply w-full;
+
+      .button {
+        @apply w-full;
+      }
+    }
+  }
+  .dates_section {
+    @apply w-full;
+  }
+}

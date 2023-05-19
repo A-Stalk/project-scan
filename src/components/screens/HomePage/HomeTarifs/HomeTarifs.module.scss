@@ -1,0 +1,173 @@
+.main_section {
+  @apply grid gap-5 items-center;
+
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 0.5fr));
+}
+
+div[class^='card_'] {
+  @apply w-96 flex flex-col border-2 rounded-lg shadow-3xl hover:shadow-2xl cursor-pointer;
+}
+
+.clicked {
+}
+
+div[class='card_left'] {
+  & .clicked {
+    border-color: #ffb64f;
+  }
+
+  & .button {
+    background-color: #d2d2d2;
+    color: #000000;
+  }
+}
+
+div[class='card_right'] .title {
+  color: white;
+}
+.title {
+  @apply flex justify-between items-center p-6;
+  height: 10em;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+
+  & h3 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: 0.01em;
+    margin-bottom: 10px;
+  }
+  & p {
+    white-space: nowrap;
+    overflow-x: visible;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.01em;
+  }
+  & .title_left {
+    width: 20rem;
+  }
+  & .title_right img {
+    width: 300px;
+    padding-left: 10px;
+  }
+}
+
+.content {
+  @apply p-6 pt-2 flex flex-col;
+}
+.current_tarif {
+  @apply h-6 self-end mb-1;
+}
+
+.rate_field {
+  @apply flex;
+  & span {
+    margin-left: 25px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 30px;
+    letter-spacing: 0.01em;
+    text-decoration-line: line-through;
+
+    color: #000000;
+
+    opacity: 0.5;
+  }
+}
+.rate {
+  @apply flex flex-col gap-3 mb-5;
+  & h3 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: 0.01em;
+  }
+  & p {
+    height: 2em;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.01em;
+    margin-bottom: 20px;
+  }
+}
+
+.rate_description {
+  & h4 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    margin-bottom: 10px;
+  }
+
+  & li {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.01em;
+    margin-bottom: 5px;
+  }
+  & ul {
+    list-style-image: url(@/assets/home__tarifs_checked.svg);
+    margin-bottom: 3rem;
+    padding-left: 1.5rem;
+  }
+}
+
+.button {
+  @apply bg-button w-full h-14 text-main text-xl rounded-lg hover:bg-opacity-80;
+}
+
+//Mobile
+
+@media (max-width: 767px) {
+  .main_section {
+    @apply flex flex-col;
+  }
+
+  div[class^='card_'] {
+    @apply w-full;
+  }
+
+  .title {
+    @apply flex justify-between;
+    & h3 {
+      font-size: 22px;
+      line-height: 24px;
+    }
+    & p {
+      font-size: 18px;
+      line-height: 22px;
+    }
+    & .title_left {
+      width: 30vw;
+    }
+    & .title_right img {
+      width: 20vw;
+      margin-left: 7vh;
+      margin-top: -7vh;
+    }
+  }
+
+  .content {
+    @apply p-6 pt-2 flex flex-col;
+  }
+  .current_tarif {
+    @apply h-6 self-end mb-1;
+  }
+
+  .button {
+    @apply bg-button w-full h-14 text-main text-xl rounded-lg hover:bg-opacity-80;
+  }
+}

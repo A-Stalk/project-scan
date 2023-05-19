@@ -1,0 +1,106 @@
+.user_unknown {
+  @apply flex gap-8 items-center;
+  & .user_unknown_reg {
+    @apply px-5 py-2;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.01em;
+    color: #acacac;
+    cursor: pointer;
+    border-right: 3px solid #7ce3e1;
+
+    &:hover {
+      text-decoration-line: underline;
+      text-underline-offset: 5px;
+    }
+  }
+
+  & .user_unknown_button {
+    @apply px-4 py-2 rounded-lg;
+    background-color: #7ce3e1;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.01em;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.menu_logged_in {
+  @apply w-96  flex justify-between gap-10 items-center;
+
+  & .info_container {
+    @apply w-44 h-16 px-4 flex flex-col justify-center gap-2 rounded-lg;
+    background-color: #f2f2f2;
+    text-align: right;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #000000;
+    .info_companies_used,
+    .info_companies_limit {
+      opacity: 0.4;
+    }
+  }
+
+  & .user_info_container {
+    @apply flex gap-2 items-center;
+    .user_info {
+      @apply flex flex-col gap-2;
+      .user_info_name {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        color: #000000;
+        opacity: 0.7;
+      }
+      .user_info_exit {
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 12px;
+        color: #000000;
+        opacity: 0.4;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+    .user_info_avatar {
+      width: 3rem;
+      height: 3rem;
+      cursor: pointer;
+      opacity: 0.8;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .user_info,
+  .user_info_name,
+  .user_info_exit,
+  .user_info_avatar {
+    display: none;
+  }
+
+  .menu_logged_in {
+    @apply w-56  flex justify-between gap-10 items-center;
+    & .info_container {
+      font-size: 8px;
+      line-height: 10px;
+    }
+  }
+
+  .user_info_container {
+    background-image: url('@/assets/header_menu_mobile.svg');
+    background-repeat: no-repeat;
+    width: 2rem;
+    height: 2rem;
+  }
+}

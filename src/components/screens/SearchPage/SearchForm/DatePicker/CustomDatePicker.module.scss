@@ -1,0 +1,69 @@
+.input,
+.error_input {
+  @apply w-44 h-10 px-3 border-2 rounded-lg shadow-sm flex items-center;
+  padding-left: 2rem;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.03em;
+  appearance: none;
+  background-image: url('../../../../../assets/input_arrow.svg');
+  background-repeat: no-repeat;
+  background-position: 90% 50%;
+  background-size: 1.5rem;
+  &:hover {
+    outline: none;
+    border: 2px solid #bbb;
+  }
+}
+.from,
+.to {
+  @apply flex flex-col w-44;
+}
+
+.input::-webkit-calendar-picker-indicator {
+  content: url('../../../../../assets/input_arrow.svg');
+  width: 1.5rem;
+  background: none;
+  z-index: 1;
+  opacity: 1;
+  &:hover {
+    filter: invert(43%) sepia(8%) saturate(0%) hue-rotate(209deg)
+      brightness(99%) contrast(88%);
+  }
+}
+.dates_section {
+  @apply h-20 flex flex-col my-3;
+
+  .dates_section_inner {
+    @apply flex flex-row gap-5;
+  }
+}
+.error_input {
+  border-color: rgba(255, 89, 89, 1);
+  color: #ff5959;
+}
+
+.error_message {
+  @apply self-center h-2;
+  //   margin-top: -0.5rem;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.01em;
+  color: #ff5959;
+}
+
+@media (max-width: 767px) {
+  .dates_section {
+    .dates_section_inner {
+      @apply flex-col gap-5;
+    }
+  }
+
+  .input,
+  .error_input,
+  .from,
+  .to {
+    @apply w-full;
+  }
+}

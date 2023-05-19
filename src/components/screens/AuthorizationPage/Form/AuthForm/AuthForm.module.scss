@@ -1,0 +1,29 @@
+.main_section {
+  @apply px-6 py-10 relative flex flex-col border-2 rounded-lg shadow-3xl hover:shadow-2xl w-full;
+  width: 25rem;
+  height: 39rem;
+}
+
+.form {
+  @apply flex flex-col;
+}
+
+.lock {
+  position: absolute;
+  width: 150px;
+  margin-top: -6rem;
+  margin-left: -7rem;
+}
+
+@media (max-width: 767px) {
+  .main_section {
+    width: 90vw;
+  }
+
+  .lock {
+    position: absolute;
+    width: 150px;
+    margin-top: -7rem;
+    margin-left: 1rem;
+  }
+}
