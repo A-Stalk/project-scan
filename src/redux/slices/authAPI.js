@@ -1,26 +1,29 @@
 // authAPI.js
 
-const authAPI = {
-  login: async credentials => {
-    console.log('Making login request with credentials:', credentials);
-    const response = await fetch(
-      'https://gateway.scan-interfax.ru/api/v1/account/login',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(credentials),
-      },
-    );
-    console.log('Received login response:', response);
+import { createSlice } from '@reduxjs/toolkit';
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message);
-    }
-    return response.json();
-  },
+const initialState = {
+  accessToken: null,
+  expire: null,
 };
 
-export default authAPI;
+export const authSlice = createSlice({
+  name: 'auth',
+  initialState,
+  reducers: {
+    login: (state, action) => {
+      state.accessToken = action.payload.accessToken;
+      state.expire = action.payload.expire;
+    },
+    logout: state => {
+      state.accessToken = null;
+      state.expire = null;
+    },
+  },
+});
+
+export const selectAccessToken = state => state.auth.accessToken;
+
+export const { login, logout } = authSlice.actions;
+
+export default authSlice.reducer;

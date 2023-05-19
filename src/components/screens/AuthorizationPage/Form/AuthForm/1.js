@@ -2,7 +2,7 @@
 import { Formik } from 'formik';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { login } from '../../../../../redux/slices/userSlice.js';
+import { login } from '../../../../../redux/slices/authAPI.js';
 import { AuthFormSchema } from '../../../../../utils/validation/schemas';
 import FormFooter from '../FormFooter/FormFooter';
 import styles from './Login.module.scss';
@@ -13,8 +13,7 @@ const Login = () => {
 
   const [pswrdVisible, setPswrdVisible] = useState(false);
 
-  const handleFormSubmit = async (values, { setSubmitting }) => {
-    console.log('Submitting form...', values);
+  const onSubmit = async values => {
     try {
       const response = await fetch(
         'https://gateway.scan-interfax.ru/api/v1/account/login',
@@ -29,27 +28,28 @@ const Login = () => {
           }),
         },
       );
-      console.log('Submitting form...');
+
       if (response.ok) {
         const data = await response.json();
         const { accessToken, expire } = data;
-        console.log('Login successful:', data);
         dispatch(login({ accessToken, expire }));
+        // Handle successful login, such as redirecting to another page
       } else {
         const errorData = await response.json();
-        console.log('Login failed:', errorData);
+        // Handle error response from the API
+        console.log(errorData.message);
       }
     } catch (error) {
-      console.log('An error occurred:', error);
+      // Handle network or other errors
+      console.log(error.message);
     }
-    setSubmitting(false);
   };
 
   return (
     <Formik
       initialValues={{ login: '', password: '' }}
       validationSchema={AuthFormSchema}
-      onSubmit={handleFormSubmit}
+      onSubmit={onSubmit}
     >
       {({ isValid, dirty, isSubmitting }) => (
         <div className={styles.form}>
@@ -95,3 +95,41 @@ const Login = () => {
 };
 
 export default Login;
+
+// userSlice.js
+import { createSlice } from '@reduxjs/toolkit';
+
+const authSlice = createSlice({
+  name: 'auth',
+  initialState: {
+    isAuthenticated: false,
+    accessToken: null,
+    expire: null,
+  },
+  reducers: {
+    login: (state, action) => {
+      state.isAuthenticated = true;
+      state.accessToken = action.payload.accessToken;
+      state.expire = action.payload.expire;
+    },
+    logout: state => {
+      state.isAuthenticated = false;
+      state.accessToken = null;
+      state.expire = null;
+    },
+  },
+});
+
+export const { login, logout } = authSlice.actions;
+
+export default authSlice.reducer;
+
+// store.js
+import { configureStore } from '@reduxjs/toolkit';
+import userSlice from './slices/userSlice';
+
+export const store = configureStore({
+  reducer: {
+    user: userSlice,
+  },
+});
