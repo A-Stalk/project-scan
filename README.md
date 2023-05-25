@@ -1,4 +1,7 @@
 # project-scan
 
 to install all dependencies use:
-## yarn
+# yarn
+
+for app run use:
+# yarn dev
