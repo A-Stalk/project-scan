@@ -6,20 +6,6 @@
   max-width: 1320px;
 }
 
-.active_link {
-  @apply underline underline-offset-4 hover:opacity-70;
-}
-
-.inactive_link {
-  @apply hover:opacity-70 hover:underline hover:underline-offset-4;
-}
-.logo {
-}
-
-.nav_items {
-  @apply flex items-center gap-16 text-lg;
-}
-
 @media (max-width: 767px) {
   .header {
     @apply w-full;
@@ -32,7 +18,7 @@
     @apply w-32;
   }
 
-  .nav_items {
+  .NavBar {
     display: none;
   }
 }

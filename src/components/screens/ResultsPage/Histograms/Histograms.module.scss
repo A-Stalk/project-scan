@@ -1,0 +1,40 @@
+.slider_container {
+  @apply w-full flex gap-3 overflow-hidden;
+}
+
+.main_container {
+  @apply w-full  flex h-36  border-footer rounded-xl overflow-hidden;
+  border-width: 2px;
+
+  .title_container {
+    @apply w-28 p-4 flex flex-col justify-between bg-footer rounded-s-lg;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.02em;
+    color: #ffffff;
+  }
+  .histogram_container {
+    @apply w-full flex h-36 p-4 gap-3 overflow-hidden;
+
+    .histogram_columns {
+      @apply w-28 px-3 flex flex-col justify-between items-center;
+      font-size: 18px;
+      line-height: 22px;
+      letter-spacing: 0.02em;
+      border-right: 2px solid #cecdcd;
+    }
+    .spinner_container {
+      @apply w-full flex flex-col gap-3 self-center justify-center items-center;
+    }
+  }
+}
+
+.left_arrow,
+.right_arrow {
+  opacity: 0.4;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+}

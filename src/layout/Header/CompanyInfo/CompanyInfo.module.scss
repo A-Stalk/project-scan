@@ -1,0 +1,44 @@
+.info_container {
+  @apply w-56 h-16 px-4 flex justify-center items-center rounded-lg;
+  background-color: #f2f2f2;
+
+  .info_container_loaded {
+    @apply flex flex-col  gap-2;
+    text-align: right;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #a4a2a2;
+  }
+
+  .info_companies_used,
+  .info_companies_limit {
+    @apply flex justify-end gap-3;
+  }
+
+  .info_companies_limit_count,
+  .info_companies_used_count {
+    opacity: 1;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .info_companies_used_count {
+    color: #000000;
+  }
+  .info_companies_limit_count {
+    color: #8ac540;
+  }
+}
+
+@media (max-width: 767px) {
+  .info_container {
+    @apply w-36 h-20 gap-1;
+    font-size: 8px;
+
+    .info_companies_used,
+    .info_companies_limit {
+      @apply flex flex-col justify-start items-start gap-0.5;
+    }
+  }
+}

@@ -1,0 +1,62 @@
+// Hamburger.module.scss
+
+@media (max-width: 767px) {
+  .hamburger {
+    background-image: url('@/assets/header_menu_mobile.svg');
+    @apply w-8 h-8 bg-no-repeat;
+  }
+
+  .menu {
+    @apply p-6 w-full flex flex-col justify-around rounded-lg border-footer z-20;
+    position: fixed;
+    top: 5rem;
+    left: 16rem;
+    height: 20rem;
+    width: 10rem;
+    transition: transform 0.3s ease;
+    transform: translateX(300%);
+    background-color: #97d7d6;
+    border: 1px solid #029491;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .slideIn {
+    transform: translateX(1%);
+  }
+
+  .user_info_container {
+    @apply flex flex-col-reverse gap-2 items-center self-start;
+
+    .user_info {
+      @apply flex flex-col gap-2;
+      .user_info_name {
+        font-size: 14px;
+        opacity: 0.7;
+      }
+    }
+    .user_info_avatar {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      border: 1px solid #029491;
+      cursor: pointer;
+    }
+  }
+  .user_info_exit {
+    @apply self-start;
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .NavBar {
+  }
+}
+
+@media (max-width: 375px) {
+  .slideIn {
+    transform: translateX(-20%);
+  }
+}

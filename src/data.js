@@ -5,6 +5,7 @@ export const API_URL = 'https://gateway.scan-interfax.ru/api/v1';
 export const HOME_URL = '/';
 export const AUTH_URL = '/authorization';
 export const SEARCH_PAGE_URL = '/search';
+export const RESULTS_PAGE_URL = '/results';
 export const NA_PAGE_URL = '/notavailable';
 
 // Home page slider data

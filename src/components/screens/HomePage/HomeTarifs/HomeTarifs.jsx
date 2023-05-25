@@ -1,12 +1,34 @@
+// HomeTarifs.jsx
+
+import homeTarifCurTarifIcon from '@/assets/home__tarifs_current_tarif.svg';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { NA_PAGE_URL } from '../../../../data';
+import {
+  selectIsLoggedIn,
+  selectUser,
+} from '../../../../redux/slices/userSlice';
 import styles from './HomeTarifs.module.scss';
 import { TarifsStore } from '/src/data.js';
 
 const HomeTarifs = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const userTariff = useSelector(selectUser)?.tariff;
+  const navigate = useNavigate();
+
   return (
     <div className={styles.main_section}>
       {TarifsStore.map(card => {
+        const isUserTariff = isLoggedIn && card.title_left_h3 === userTariff;
+
         return (
-          <div key={card.id} className={card.name}>
+          <div
+            key={card.id}
+            className={card.name}
+            style={{
+              borderColor: isUserTariff ? card.color : '',
+            }}
+          >
             <div className={styles.title} style={{ background: card.color }}>
               <div className={styles.title_left}>
                 <h3>{card.title_left_h3}</h3>
@@ -17,11 +39,16 @@ const HomeTarifs = () => {
               </div>
             </div>
             <div className={styles.content}>
-              <img
-                className={styles.current_tarif}
-                src={card.current_tarif}
-                alt=''
-              />
+              <div className={styles.current_tarif}>
+                {isUserTariff && (
+                  <img
+                    className={styles.current_tarif_icon}
+                    src={homeTarifCurTarifIcon}
+                    alt=''
+                  />
+                )}
+              </div>
+
               <div className={styles.rate}>
                 <span className={styles.rate_field}>
                   <h3>{card.rate_h3_new}</h3>
@@ -37,7 +64,21 @@ const HomeTarifs = () => {
                   <li>{card.rate_description_li3}</li>
                 </ul>
               </div>
-              <button className={styles.button}>{card.button}</button>
+              {isUserTariff ? (
+                <button
+                  className={styles.button_current_tarif}
+                  onClick={() => navigate(NA_PAGE_URL)}
+                >
+                  Перейти в личный кабинет
+                </button>
+              ) : (
+                <button
+                  className={styles.button}
+                  onClick={() => navigate(NA_PAGE_URL)}
+                >
+                  Подробнее
+                </button>
+              )}
             </div>
           </div>
         );

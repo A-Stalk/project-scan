@@ -25,7 +25,7 @@ export const searchFormSchema = yup.object().shape({
     .test('innValidation', 'Некорректный ИНН', validateInn)
     .required('Введите корректные данные'),
 
-  docsNmr: yup
+  limit: yup
     .number()
     .min(1, 'Должно быть число от 1 до 1000')
     .max(1000, 'Должно быть число от 1 до 1000')

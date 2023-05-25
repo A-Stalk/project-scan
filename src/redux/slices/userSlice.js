@@ -1,27 +1,50 @@
 // userSlice.js
 import { createSlice } from '@reduxjs/toolkit';
+import { apiLoginUser } from '../api/apiLoginUser';
 
-const authSlice = createSlice({
+const initialState = {
+  isLoggedIn: false,
+  accessToken: null,
+  expire: null,
+  user: null,
+};
+
+export const userSlice = createSlice({
   name: 'user',
   initialState: {
-    isAuthenticated: false,
-    accessToken: null,
-    expire: null,
+    ...initialState,
+    ...JSON.parse(localStorage.getItem('user')),
   },
   reducers: {
-    login: (state, action) => {
-      state.isAuthenticated = true;
-      state.accessToken = action.payload.accessToken;
-      state.expire = action.payload.expire;
-    },
-    logout: state => {
-      state.isAuthenticated = false;
+    logoutProcess: state => {
+      state.isLoggedIn = false;
       state.accessToken = null;
       state.expire = null;
+      state.user = null;
+      localStorage.clear();
     },
+  },
+  extraReducers: builder => {
+    builder.addCase(apiLoginUser.fulfilled, (state, action) => {
+      state.isLoggedIn = true;
+      state.accessToken = action.payload.accessToken;
+      state.expire = action.payload.expire;
+      state.user = {
+        name: 'Андрей A_Stalk',
+        avatar: '/src/assets/ava_example.jpg',
+        tariff: 'Beginner',
+      };
+      localStorage.setItem('user', JSON.stringify(state));
+      localStorage.setItem('accessToken', state.accessToken);
+    });
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { logoutProcess } = userSlice.actions;
 
-export default authSlice.reducer;
+export const selectIsLoggedIn = state => state.user.isLoggedIn;
+export const selectAccessToken = state => state.user.accessToken;
+export const selectExpire = state => state.user.expire;
+export const selectUser = state => state.user.user;
+
+export default userSlice.reducer;

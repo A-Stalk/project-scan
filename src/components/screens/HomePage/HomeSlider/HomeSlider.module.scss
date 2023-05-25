@@ -1,15 +1,19 @@
+// HomeSlider.module.scss
+
 .slider_section {
   @apply mt-10 mb-20 flex justify-center items-center gap-10;
 }
 .slider_items {
-  @apply flex gap-10 justify-between;
+  @apply flex gap-5 justify-between;
+  overflow: hidden;
+  transition: transform 0.5s ease;
 }
 
 .item,
 .item_left,
 .item_center,
 .item_right {
-  @apply w-full h-56 p-4 gap-7 border-2 rounded-lg shadow-3xl hover:shadow-2xl cursor-pointer;
+  @apply w-full h-56 p-4 flex flex-col justify-start border-2 rounded-lg shadow-3xl hover:shadow-2xl cursor-pointer;
 
   & p {
     margin-top: 2rem;
@@ -18,7 +22,7 @@
 
 .arrow_left,
 .arrow_right {
-  @apply cursor-pointer hover:shadow-lg;
+  @apply cursor-pointer hover:opacity-80;
 }
 
 @media (max-width: 767px) {
@@ -30,8 +34,11 @@
   .arrow_right {
     width: 50px;
   }
-  .item_center {
-    @apply h-52 p-4;
+  .item,
+  .item_left,
+  .item_center,
+  .item_right {
+    @apply w-60 h-48 p-4 justify-center;
     & p {
       margin-top: 1rem;
       font-size: 14px;

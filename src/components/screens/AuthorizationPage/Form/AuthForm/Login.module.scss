@@ -36,7 +36,7 @@
 .button_section {
   @apply w-full flex flex-col items-center gap-5;
   & button {
-    @apply bg-button w-full h-14 mt-4 text-main text-xl rounded-lg;
+    @apply bg-button w-full h-14 mt-4 text-main text-xl rounded-lg flex justify-center items-center;
   }
 
   & a {

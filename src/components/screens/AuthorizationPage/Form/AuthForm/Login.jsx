@@ -1,10 +1,13 @@
-import { useNavigate } from 'react-router-dom';
 // LoginForm.jsx
-import { Formik } from 'formik';
+
+import { Form, Formik } from 'formik';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { login } from '../../../../../redux/slices/userSlice.js';
+import { useNavigate } from 'react-router-dom';
+import { HOME_URL } from '../../../../../data.js';
+import { apiLoginUser } from '../../../../../redux/api/apiLoginUser.js';
 import { AuthFormSchema } from '../../../../../utils/validation/schemas';
+import Spinner from '../../../../spinner/Spinner.jsx';
 import FormFooter from '../FormFooter/FormFooter';
 import styles from './Login.module.scss';
 import LoginInput from './LoginInput';
@@ -15,43 +18,18 @@ const Login = () => {
 
   const [pswrdVisible, setPswrdVisible] = useState(false);
 
-  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-    console.log('Submitting form...', values);
+  const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
     try {
-      const response = await fetch(
-        'https://gateway.scan-interfax.ru/api/v1/account/login',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            login: values.login,
-            password: values.password,
-          }),
-        },
-      );
-      console.log('Submitting form...');
-      if (response.ok) {
-        const data = await response.json();
-        const { accessToken, expire } = data;
-
-        // Set Bearer token in the Authorization header for subsequent API requests
-        const bearerToken = `Bearer ${accessToken}`;
-        localStorage.setItem('accessToken', bearerToken);
-
-        dispatch(login({ accessToken, expire }));
-        navigate('/'); // Redirect to dashboard after successful login
-      } else {
-        const errorData = await response.json();
-        console.log('Login failed:', errorData);
-      }
+      setSubmitting(true);
+      const { login, password } = values;
+      await dispatch(apiLoginUser({ login, password }));
     } catch (error) {
-      console.log('An error occurred:', error);
+      setFieldError('login', error.message);
+      setFieldError('password', error.message);
+    } finally {
+      setSubmitting(false);
+      navigate(HOME_URL);
     }
-
-    setSubmitting(false);
-    resetForm();
   };
 
   return (
@@ -61,10 +39,10 @@ const Login = () => {
       onSubmit={handleSubmit}
     >
       {({ isValid, dirty, isSubmitting }) => (
-        <div className={styles.form}>
+        <Form className={styles.form}>
           <LoginInput
             inputProps={{ type: 'text', name: 'login' }}
-            label='Логин или номер телефона ( sf_student1 ):'
+            label='Логин или номер телефона ("sf_student1"):'
           />
           <div className={styles.pswrd_section}>
             <LoginInput
@@ -72,7 +50,7 @@ const Login = () => {
                 type: pswrdVisible ? 'text' : 'password',
                 name: 'password',
               }}
-              label='Пароль ( 4i2385j ):'
+              label='Пароль ("4i2385j"):'
             />
             <span
               className={
@@ -92,12 +70,12 @@ const Login = () => {
                   : { opacity: 1 }
               }
             >
-              Войти
+              {isSubmitting ? <Spinner /> : 'Войти'}
             </button>
             <a href=''>Восстановить пароль</a>
           </div>
           <FormFooter />
-        </div>
+        </Form>
       )}
     </Formik>
   );

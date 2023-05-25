@@ -1,5 +1,13 @@
+// SearchForm.jsx
+
 import { Form, Formik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { RESULTS_PAGE_URL } from '../../../../data.js';
+import { apiHistograms } from '../../../../redux/api/apiHistograms.js';
+import { setFormData } from '../../../../redux/slices/searchFormData.js';
 import { searchFormSchema } from '../../../../utils/validation/schemas.js';
+import Spinner from '../../../spinner/Spinner.jsx';
 import CustomCheckbox from './Checkbox/CustomCheckbox.jsx';
 import CustomDatePicker from './DatePicker/CustomDatePicker.jsx';
 import CustomInput from './Input/CustomInput';
@@ -7,17 +15,26 @@ import styles from './SearchForm.module.scss';
 import CustomSelector from './Selector/CustomSelector.jsx';
 
 const SearchForm = () => {
-  const onSubmit = (values, { resetForm }) => {
-    console.log(values);
-    resetForm();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const onSubmit = async (formData, { setSubmitting }) => {
+    try {
+      setSubmitting(true);
+      await dispatch(setFormData(formData));
+      await dispatch(apiHistograms());
+    } finally {
+      setSubmitting(false);
+      navigate(RESULTS_PAGE_URL);
+    }
   };
 
   return (
     <Formik
       initialValues={{
         inn: '',
-        ton: '',
-        docsNmr: '',
+        tonality: 'any',
+        limit: '',
         startDate: '',
         endDate: '',
       }}
@@ -37,11 +54,14 @@ const SearchForm = () => {
                 placeholder='10 цифр'
               />
 
-              <CustomSelector label='Тональность' name='ton'></CustomSelector>
+              <CustomSelector
+                label='Тональность'
+                name='tonality'
+              ></CustomSelector>
 
               <CustomInput
                 label='Количество документов в выдаче*'
-                name='docsNmr'
+                name='limit'
                 type='number'
                 placeholder='от 1 до 1000'
               />
@@ -51,29 +71,32 @@ const SearchForm = () => {
               <div className={styles.checkbox_section}>
                 <CustomCheckbox
                   label='Признак максимальной полноты'
-                  name='priznak'
+                  name='maxFullness'
                 />
                 <CustomCheckbox
                   label='Упоминания в бизнес-контексте'
-                  name='biz'
+                  name='inBusinessNews'
                 />
                 <CustomCheckbox
                   label='Главная роль в публикации'
-                  name='main_role'
+                  name='onlyMainRole'
                 />
                 <CustomCheckbox
                   label='Публикации только с риск-факторами'
-                  name='risk'
+                  name='onlyWithRiskFactors'
                 />
                 <CustomCheckbox
                   label='Включать технические новости рынков'
-                  name='tech'
+                  name='includeTechNews'
                 />
                 <CustomCheckbox
                   label='Включать анонсы и календари'
-                  name='anons'
+                  name='includeAnnouncements'
                 />
-                <CustomCheckbox label='Включать сводки новостей' name='news' />
+                <CustomCheckbox
+                  label='Включать сводки новостей'
+                  name='includeDigests'
+                />
               </div>
             </div>
           </div>
@@ -90,7 +113,7 @@ const SearchForm = () => {
                 type='submit'
                 disabled={!dirty || !isValid || isSubmitting}
               >
-                Поиск
+                {isSubmitting ? <Spinner /> : 'Поиск'}
               </button>
               <p className={styles.required_text}>
                 * Обязательные к заполнению поля

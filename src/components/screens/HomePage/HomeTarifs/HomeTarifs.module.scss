@@ -5,21 +5,10 @@
 }
 
 div[class^='card_'] {
-  @apply w-96 flex flex-col border-2 rounded-lg shadow-3xl hover:shadow-2xl cursor-pointer;
+  @apply w-96 flex flex-col border-2 rounded-lg shadow-3xl hover:shadow-2xl;
 }
 
 .clicked {
-}
-
-div[class='card_left'] {
-  & .clicked {
-    border-color: #ffb64f;
-  }
-
-  & .button {
-    background-color: #d2d2d2;
-    color: #000000;
-  }
 }
 
 div[class='card_right'] .title {
@@ -126,7 +115,12 @@ div[class='card_right'] .title {
 }
 
 .button {
-  @apply bg-button w-full h-14 text-main text-xl rounded-lg hover:bg-opacity-80;
+  @apply bg-button w-full h-14 text-main text-xl rounded-lg hover:bg-opacity-80 cursor-pointer;
+}
+.button_current_tarif {
+  @apply w-full h-14 text-xl rounded-lg  hover:bg-button hover:text-white cursor-pointer;
+  background-color: #d2d2d2;
+  color: #000000;
 }
 
 //Mobile
@@ -165,9 +159,5 @@ div[class='card_right'] .title {
   }
   .current_tarif {
     @apply h-6 self-end mb-1;
-  }
-
-  .button {
-    @apply bg-button w-full h-14 text-main text-xl rounded-lg hover:bg-opacity-80;
   }
 }

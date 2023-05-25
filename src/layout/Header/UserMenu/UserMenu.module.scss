@@ -1,3 +1,7 @@
+.hamburger_mobile {
+  display: none;
+}
+
 .user_unknown {
   @apply flex gap-8 items-center;
   & .user_unknown_reg {
@@ -31,23 +35,9 @@
 }
 
 .menu_logged_in {
-  @apply w-96  flex justify-between gap-10 items-center;
+  @apply flex justify-between gap-10 items-center;
 
-  & .info_container {
-    @apply w-44 h-16 px-4 flex flex-col justify-center gap-2 rounded-lg;
-    background-color: #f2f2f2;
-    text-align: right;
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 12px;
-    color: #000000;
-    .info_companies_used,
-    .info_companies_limit {
-      opacity: 0.4;
-    }
-  }
-
-  & .user_info_container {
+  .user_info_container {
     @apply flex gap-2 items-center;
     .user_info {
       @apply flex flex-col gap-2;
@@ -72,6 +62,7 @@
     .user_info_avatar {
       width: 3rem;
       height: 3rem;
+      border-radius: 50%;
       cursor: pointer;
       opacity: 0.8;
       &:hover {
@@ -82,6 +73,8 @@
 }
 
 @media (max-width: 767px) {
+  .user_unknown_reg,
+  .user_unknown_button,
   .user_info,
   .user_info_name,
   .user_info_exit,
@@ -89,18 +82,15 @@
     display: none;
   }
 
+  .hamburger_mobile {
+    @apply flex;
+  }
+
   .menu_logged_in {
-    @apply w-56  flex justify-between gap-10 items-center;
+    @apply flex  gap-2 items-center;
     & .info_container {
       font-size: 8px;
       line-height: 10px;
     }
-  }
-
-  .user_info_container {
-    background-image: url('@/assets/header_menu_mobile.svg');
-    background-repeat: no-repeat;
-    width: 2rem;
-    height: 2rem;
   }
 }

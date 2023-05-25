@@ -1,10 +1,15 @@
 import DescriptionPicture from '@/assets/img/home__description_section.svg';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { SEARCH_PAGE_URL } from '../../../data';
+import { selectAccessToken } from '../../../redux/slices/userSlice';
 import styles from './HomePage.module.scss';
 import HomeSlider from './HomeSlider/HomeSlider';
 import HomeTarifs from './HomeTarifs/HomeTarifs';
 
 const HomePage = () => {
+  const isLoggedIn = useSelector(selectAccessToken);
+
   return (
     <div className={styles.home}>
       <div className={styles.description_section}>
@@ -17,9 +22,11 @@ const HomePage = () => {
             Комплексный анализ публикаций, получение данных <br /> в формате PDF
             на электронную почту.
           </h4>
-          <Link to='/search' className={styles.button}>
-            <button>Запросить данные</button>
-          </Link>
+          {isLoggedIn && (
+            <Link to={SEARCH_PAGE_URL} className={styles.button}>
+              <button>Запросить данные</button>
+            </Link>
+          )}
         </div>
         <div className={styles.right}>
           <div className={styles.desc_image}>

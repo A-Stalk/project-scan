@@ -8,9 +8,9 @@ const AuthForm = () => {
   return (
     <div className={styles.main_section}>
       <Lock className={styles.lock} />
-      <form className={styles.form}>
+      <div className={styles.form}>
         <Tabs />
-      </form>
+      </div>
     </div>
   );
 };
