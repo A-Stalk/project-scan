@@ -52,20 +52,16 @@ const searchFormDataSlice = createSlice({
           excludeAnnouncements: !formData.includeAnnouncements,
           excludeDigests: !formData.includeDigests,
         },
-        similarMode: 'none',
+        similarMode: 'duplicates',
         limit: formData.limit,
         sortType: 'sourceInfluence',
         sortDirectionType: 'desc',
         intervalType: 'month',
         histogramTypes: ['totalDocuments', 'riskFactors'],
       };
-      state.data = formData;
-      state.formattedSearchData = formattedSearchData;
 
-      localStorage.setItem(
-        'formattedSearchData',
-        JSON.stringify(formattedSearchData),
-      );
+      state.formData = formData;
+      state.formattedSearchData = formattedSearchData;
     },
   },
 });

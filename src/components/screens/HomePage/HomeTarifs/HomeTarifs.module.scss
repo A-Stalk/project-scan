@@ -8,9 +8,6 @@ div[class^='card_'] {
   @apply w-96 flex flex-col border-2 rounded-lg shadow-3xl hover:shadow-2xl;
 }
 
-.clicked {
-}
-
 div[class='card_right'] .title {
   color: white;
 }

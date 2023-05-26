@@ -4,8 +4,7 @@ import { Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RESULTS_PAGE_URL } from '../../../../data.js';
-import { apiHistograms } from '../../../../redux/api/apiHistograms.js';
-import { setFormData } from '../../../../redux/slices/searchFormData.js';
+import { setFormData } from '../../../../redux/slices/searchFormDataSlice.js';
 import { searchFormSchema } from '../../../../utils/validation/schemas.js';
 import Spinner from '../../../spinner/Spinner.jsx';
 import CustomCheckbox from './Checkbox/CustomCheckbox.jsx';
@@ -22,7 +21,7 @@ const SearchForm = () => {
     try {
       setSubmitting(true);
       await dispatch(setFormData(formData));
-      await dispatch(apiHistograms());
+      // await dispatch(apiHistograms());
     } finally {
       setSubmitting(false);
       navigate(RESULTS_PAGE_URL);

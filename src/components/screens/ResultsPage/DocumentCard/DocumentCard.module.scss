@@ -1,0 +1,50 @@
+.card_container {
+  @apply p-5 flex flex-col justify-between border-2 rounded-lg shadow-3xl hover:shadow-2xl;
+  width: 30rem;
+  height: 35rem;
+  p,
+  a {
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.02em;
+    opacity: 0.4;
+  }
+  .header {
+    @apply flex gap-4;
+
+    a {
+      @apply underline;
+    }
+  }
+  .main {
+    @apply flex flex-col gap-1;
+    h3 {
+      font-size: 26px;
+      line-height: 31px;
+      letter-spacing: 0.02em;
+    }
+    .bage {
+      @apply w-32 h-5 px-5 py-1 flex rounded-md items-center justify-center;
+      background-color: #ffb64f;
+      font-size: 12px;
+      line-height: 15px;
+      letter-spacing: 0.02em;
+    }
+    .image {
+    }
+    .content {
+      @apply h-40 overflow-hidden;
+    }
+  }
+  .footer {
+    @apply flex justify-between items-end;
+
+    .button {
+      @apply bg-button w-48 h-9 rounded-md flex justify-center items-center;
+      font-size: 16px;
+      line-height: 19px;
+      letter-spacing: 0.02em;
+      background-color: #7ce3e1;
+    }
+  }
+}

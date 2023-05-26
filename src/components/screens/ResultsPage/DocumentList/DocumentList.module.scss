@@ -1,0 +1,14 @@
+.main_section {
+  @apply flex flex-col items-center gap-5;
+
+  .document_list {
+    @apply flex flex-wrap  gap-5 justify-center;
+  }
+  .button {
+    @apply bg-button w-48 h-9 bg-button rounded-md flex justify-center items-center;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.02em;
+    color: white;
+  }
+}

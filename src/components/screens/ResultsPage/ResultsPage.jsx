@@ -3,19 +3,22 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TitleImage from '../../../assets/img/result_page_title.svg';
+import { apiDocuments } from '../../../redux/api/apiDocuments';
 import { apiObjectSearch } from '../../../redux/api/apiObjectSearch';
 import { selectObjectSearch } from '../../../redux/slices/objectSearchSlice';
 import Spinner from '../../spinner/Spinner';
+import DocumentList from './DocumentList/DocumentList';
 import Histograms from './Histograms/Histograms';
 import styles from './ResultsPage.module.scss';
 
 const ResultsPage = () => {
   const dispatch = useDispatch();
   const objects = useSelector(selectObjectSearch);
-  console.log(objects);
 
   useEffect(() => {
-    dispatch(apiObjectSearch());
+    dispatch(apiObjectSearch()).then(() => {
+      dispatch(apiDocuments());
+    });
   }, [dispatch]);
 
   return (
@@ -42,6 +45,8 @@ const ResultsPage = () => {
         </span>
       </div>
       <Histograms />
+      <h2>Список документов</h2>
+      <DocumentList />
     </div>
   );
 };

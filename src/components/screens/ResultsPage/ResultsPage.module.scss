@@ -1,5 +1,5 @@
 .resultPage {
-  @apply w-full flex flex-col;
+  @apply w-full flex flex-col gap-6;
   .title_container {
     @apply flex justify-between items-center md:flex-col;
     .title {
@@ -21,15 +21,14 @@
       width: 30rem;
     }
   }
-
+  h2 {
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: 0.02em;
+  }
   .histogram_info_container {
     @apply flex flex-col gap-3 mb-10;
 
-    h2 {
-      font-size: 30px;
-      line-height: 36px;
-      letter-spacing: 0.02em;
-    }
     .histogram_count {
       @apply flex gap-2;
       font-size: 18px;
