@@ -3,9 +3,11 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TitleImage from '../../../assets/img/result_page_title.svg';
-import { apiDocuments } from '../../../redux/api/apiDocuments';
 import { apiObjectSearch } from '../../../redux/api/apiObjectSearch';
-import { selectObjectSearch } from '../../../redux/slices/objectSearchSlice';
+import {
+  selectObjectSearch,
+  selectObjectSearchLoading,
+} from '../../../redux/slices/objectSearchSlice';
 import Spinner from '../../spinner/Spinner';
 import DocumentList from './DocumentList/DocumentList';
 import Histograms from './Histograms/Histograms';
@@ -14,11 +16,10 @@ import styles from './ResultsPage.module.scss';
 const ResultsPage = () => {
   const dispatch = useDispatch();
   const objects = useSelector(selectObjectSearch);
+  const objectsLoading = useSelector(selectObjectSearchLoading);
 
   useEffect(() => {
-    dispatch(apiObjectSearch()).then(() => {
-      dispatch(apiDocuments());
-    });
+    dispatch(apiObjectSearch());
   }, [dispatch]);
 
   return (
@@ -36,17 +37,13 @@ const ResultsPage = () => {
         <h2>Общая сводка</h2>
         <span className={styles.histogram_count}>
           Найдено
-          {objects.length === 0 ? (
-            <Spinner />
-          ) : (
-            <p>{objects.items?.length || 0}</p>
-          )}
+          {objectsLoading ? <Spinner /> : <p>{objects?.items?.length || 0}</p>}
           вариантов
         </span>
       </div>
       <Histograms />
       <h2>Список документов</h2>
-      <DocumentList />
+      {!objectsLoading ? <DocumentList /> : <Spinner />}
     </div>
   );
 };

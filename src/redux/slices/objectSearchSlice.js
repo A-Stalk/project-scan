@@ -4,9 +4,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { apiObjectSearch } from '../api/apiObjectSearch';
 
 const initialState = {
-  loading: false,
+  loading: true,
   error: null,
-  items: [],
+  items: {},
 };
 
 const objectSearchSlice = createSlice({
@@ -21,9 +21,9 @@ const objectSearchSlice = createSlice({
       })
 
       .addCase(apiObjectSearch.fulfilled, (state, action) => {
-        state.loading = false;
         state.items = action.payload;
         localStorage.setItem('objectSearch', JSON.stringify(action.payload));
+        state.loading = false;
       })
 
       .addCase(apiObjectSearch.rejected, (state, action) => {

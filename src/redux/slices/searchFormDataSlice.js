@@ -54,7 +54,7 @@ const searchFormDataSlice = createSlice({
         },
         similarMode: 'duplicates',
         limit: formData.limit,
-        sortType: 'sourceInfluence',
+        sortType: 'issueDate',
         sortDirectionType: 'desc',
         intervalType: 'month',
         histogramTypes: ['totalDocuments', 'riskFactors'],

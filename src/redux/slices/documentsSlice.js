@@ -1,4 +1,4 @@
-// documents.js
+// documentsSlice.js
 
 import { createSlice } from '@reduxjs/toolkit';
 import { apiDocuments } from '../api/apiDocuments';
@@ -21,9 +21,12 @@ const documentsSlice = createSlice({
       })
 
       .addCase(apiDocuments.fulfilled, (state, action) => {
+        const uniqueDocuments = action.payload.filter(doc => {
+          return !state.ScanDoc.some(existingDoc => existingDoc.id === doc.id);
+        });
+        state.ScanDoc.push(...uniqueDocuments);
+        localStorage.setItem('ScanDoc', JSON.stringify(state.ScanDoc));
         state.loading = false;
-        state.ScanDoc = action.payload;
-        localStorage.setItem('documents', JSON.stringify(action.payload));
       })
 
       .addCase(apiDocuments.rejected, (state, action) => {

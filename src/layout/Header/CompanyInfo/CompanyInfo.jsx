@@ -11,14 +11,17 @@ const CompanyInfo = () => {
   const { usedCompanyCount, companyLimit, isLoading } = useSelector(
     state => state.accInfo,
   );
+  const token = localStorage.getItem('accessToken');
 
   useEffect(() => {
-    dispatch(apiAccInfo());
-  }, [dispatch]);
+    if (token) {
+      dispatch(apiAccInfo());
+    }
+  }, [dispatch, token]);
 
   return (
     <div className={styles.info_container}>
-      {isLoading ? (
+      {!token || isLoading ? (
         <Spinner />
       ) : (
         <div className={styles.info_container_loaded}>

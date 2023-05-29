@@ -5,9 +5,8 @@ import axios from './axiosConfig';
 
 export const apiDocuments = createAsyncThunk(
   'apiDocuments',
-  async (_, { getState, rejectWithValue }) => {
-    const { items } = getState().objectSearch;
-    const ids = items.items.map(item => item.encodedId);
+  async (selectedItems, { rejectWithValue }) => {
+    const ids = selectedItems.map(item => item.encodedId);
     const requestData = {
       ids: ids,
     };
