@@ -2,11 +2,11 @@
 export const API_URL = 'https://gateway.scan-interfax.ru/api/v1';
 
 // URL's
-export const HOME_URL = '/project-scan';
-export const AUTH_URL = '/project-scan/authorization';
-export const SEARCH_PAGE_URL = '/project-scan/search';
-export const RESULTS_PAGE_URL = '/project-scan/results';
-export const NA_PAGE_URL = '/project-scan/notavailable';
+export const HOME_URL = '/';
+export const AUTH_URL = '/authorization';
+export const SEARCH_PAGE_URL = '/search';
+export const RESULTS_PAGE_URL = '/results';
+export const NA_PAGE_URL = '/notavailable';
 
 // Home page slider data
 import SliderPic2 from '@/assets/slider_base.svg';
