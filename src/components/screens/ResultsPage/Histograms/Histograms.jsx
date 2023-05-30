@@ -19,6 +19,7 @@ const Histograms = () => {
 
   useEffect(() => {
     dispatch(apiHistograms());
+    console.log('dispatched');
   }, [dispatch]);
 
   const handleScroll = scrollOffset => {
@@ -37,7 +38,7 @@ const Histograms = () => {
       });
     }
   };
-  // условие пока histograms полностью не загрузится показывать спиннер. в противном случае будет ошибка при попытке сортировки из-за undefined в [0].
+  // условие пока histograms полностью не загрузится показывать спиннер. в противном случае будет ошибка при попытке сортировки sortedData из-за undefined в [0].
 
   if (!histograms?.data && !searchData) {
     return (
@@ -72,8 +73,9 @@ const Histograms = () => {
         />
       </div>
     );
-  } else if (histograms.data) {
+  } else if (histograms?.data?.length > 0) {
     // сортировка дат по возрастающей
+    console.log(histograms.data);
     const sortedData = [...histograms.data[0].data].sort((a, b) =>
       moment(a.date).diff(moment(b.date)),
     );
