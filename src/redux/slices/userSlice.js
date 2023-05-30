@@ -1,4 +1,5 @@
 // userSlice.js
+import ava from '@/assets/ava_example.jpg';
 import { createSlice } from '@reduxjs/toolkit';
 import { apiLoginUser } from '../api/apiLoginUser';
 
@@ -32,7 +33,7 @@ export const userSlice = createSlice({
       state.expire = action.payload.expire;
       state.user = {
         name: 'Андрей A_Stalk',
-        avatar: '@/assets/ava_example.jpg',
+        avatar: ava,
         tariff: 'Beginner',
       };
       localStorage.setItem('user', JSON.stringify(state));
