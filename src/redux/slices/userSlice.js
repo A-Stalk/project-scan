@@ -32,7 +32,7 @@ export const userSlice = createSlice({
       state.expire = action.payload.expire;
       state.user = {
         name: 'Андрей A_Stalk',
-        avatar: '/src/assets/ava_example.jpg',
+        avatar: '@/assets/ava_example.jpg',
         tariff: 'Beginner',
       };
       localStorage.setItem('user', JSON.stringify(state));
