@@ -2,6 +2,7 @@
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import avatar from '../../../assets/ava_example.jpg';
 import { AUTH_URL } from '../../../data';
 import {
   logoutProcess,
@@ -44,7 +45,7 @@ const UserMenu = () => {
               </button>
             </div>
             <img
-              src={user.avatar}
+              src={avatar}
               alt='user_avatar'
               className={styles.user_info_avatar}
             />
