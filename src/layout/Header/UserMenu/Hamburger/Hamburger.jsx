@@ -1,5 +1,6 @@
 // Hamburger.jsx
 
+import avatar from '@/assets/ava_example.jpg';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -65,7 +66,7 @@ const Hamburger = () => {
               <span className={styles.user_info_name}>{user.name}</span>
             </div>
             <img
-              src={user.avatar}
+              src={avatar}
               alt='user_avatar'
               className={styles.user_info_avatar}
             />
