@@ -54,7 +54,6 @@ const Hamburger = () => {
         {' '}
         {!isLoggedIn && (
           <div className={styles.user_unknown}>
-            <span className={styles.user_unknown_reg}>Зарегистрироваться</span>
             <Link to={AUTH_URL}>
               <button className={styles.user_unknown_button}>Войти</button>
             </Link>

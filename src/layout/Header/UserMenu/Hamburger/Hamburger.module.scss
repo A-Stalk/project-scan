@@ -51,22 +51,7 @@
     }
   }
   .user_unknown {
-    @apply flex flex-col gap-3 items-center;
-    & .user_unknown_reg {
-      @apply px-5 py-2;
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 17px;
-      letter-spacing: 0.01em;
-      color: #545252;
-      cursor: pointer;
-      border-right: 3px solid #7ce3e1;
-
-      &:hover {
-        text-decoration-line: underline;
-        text-underline-offset: 5px;
-      }
-    }
+    @apply flex flex-col gap-3 items-start;
 
     & .user_unknown_button {
       @apply px-4 py-2 rounded-lg;
@@ -75,6 +60,7 @@
       font-size: 14px;
       line-height: 17px;
       letter-spacing: 0.01em;
+      border: 1px solid #029491;
 
       &:hover {
         opacity: 0.8;
