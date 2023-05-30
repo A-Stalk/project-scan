@@ -77,7 +77,6 @@ const Histograms = () => {
     const sortedData = [...histograms.data[0].data].sort((a, b) =>
       moment(a.date).diff(moment(b.date)),
     );
-    console.log(histograms);
 
     return (
       <div className={styles.slider_container}>
