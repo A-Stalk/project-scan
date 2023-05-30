@@ -22,13 +22,19 @@ const Login = () => {
     try {
       setSubmitting(true);
       const { login, password } = values;
-      await dispatch(apiLoginUser({ login, password }));
+      const response = await dispatch(apiLoginUser({ login, password }));
+
+      if (apiLoginUser.fulfilled.match(response)) {
+        navigate(HOME_URL);
+      } else {
+        setFieldError('login', 'Неправильный логин или пароль');
+        setFieldError('password', 'Неправильный логин или пароль');
+      }
     } catch (error) {
       setFieldError('login', error.message);
       setFieldError('password', error.message);
     } finally {
       setSubmitting(false);
-      navigate(HOME_URL);
     }
   };
 

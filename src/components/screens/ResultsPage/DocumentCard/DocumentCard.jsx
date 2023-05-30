@@ -5,6 +5,7 @@
 import DOMPurify from 'dompurify';
 import HTMLReactParser from 'html-react-parser';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 import styles from './DocumentCard.module.scss';
 
 const DocumentCard = ({ doc }) => {
@@ -25,6 +26,12 @@ const DocumentCard = ({ doc }) => {
 
   const sanitizedMarkup = DOMPurify.sanitize(markup);
   const parsedMarkup = HTMLReactParser(sanitizedMarkup);
+
+  const findImage = parsedMarkup => {
+    const extractImage = parsedMarkup.match(/<img src="(.*?)"/m);
+    return extractImage ? extractImage[1] : null;
+  };
+
   const cleanText = parsedMarkup.replace(/<[^>]+>/g, '');
 
   return (
@@ -41,21 +48,40 @@ const DocumentCard = ({ doc }) => {
       </header>
 
       <main className={styles.main}>
-        <h3>{titleText}</h3>
+        <h3>{titleText.slice(0, 70)}...</h3>
 
-        {isAnnouncement && <span className={styles.bage}>Анонсы</span>}
-        {isDigest && <span className={styles.bage}>Дайджест</span>}
-        {isSpeechRecognition && (
-          <span className={styles.bage}>isSpeechRecognition</span>
-        )}
-        {isTechNews && <span className={styles.bage}>Технические новости</span>}
+        <div className={styles.bage_container}>
+          {isAnnouncement && <span className={styles.bage_anons}>Анонсы</span>}
+          {isDigest && <span className={styles.bage_digest}>Дайджест</span>}
+          {isSpeechRecognition && (
+            <span className={styles.bage_speech}>Речь</span>
+          )}
+          {isTechNews && (
+            <span className={styles.bage_tech}>Технические новости</span>
+          )}
+        </div>
 
-        <img src='' alt='' className={styles.image} />
+        <div
+          className={styles.image}
+          style={{ backgroundImage: `url(${findImage(parsedMarkup)})` }}
+        ></div>
         <p className={styles.content}>{cleanText.slice(0, 300)}...</p>
       </main>
 
       <footer className={styles.footer}>
-        <button className={styles.button}>Читать в источнике</button>
+        <div className={styles.button_container}>
+          <Link
+            to={url}
+            target='_blank'
+            rel='noreferrer'
+            className={styles.button_link}
+          >
+            {url && (
+              <button className={styles.button}>Читать в источнике</button>
+            )}
+          </Link>
+        </div>
+
         <p>{wordCount} слова</p>
       </footer>
     </div>

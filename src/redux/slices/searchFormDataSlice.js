@@ -69,3 +69,5 @@ const searchFormDataSlice = createSlice({
 export const { setFormData } = searchFormDataSlice.actions;
 
 export default searchFormDataSlice.reducer;
+
+export const selectSearchFormData = state => state.formData.formattedSearchData;

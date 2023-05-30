@@ -1,7 +1,7 @@
 .card_container {
   @apply p-5 flex flex-col justify-between border-2 rounded-lg shadow-3xl hover:shadow-2xl;
-  width: 30rem;
-  height: 35rem;
+  width: 38rem;
+  height: 40rem;
   p,
   a {
     font-size: 16px;
@@ -17,20 +17,29 @@
     }
   }
   .main {
-    @apply flex flex-col gap-1;
+    @apply flex flex-col gap-3;
     h3 {
       font-size: 26px;
       line-height: 31px;
       letter-spacing: 0.02em;
     }
-    .bage {
-      @apply w-32 h-5 px-5 py-1 flex rounded-md items-center justify-center;
+
+    .bage_container {
+      @apply w-full h-5 flex gap-3;
+    }
+    .bage_anons,
+    .bage_digest,
+    .bage_speech,
+    .bage_tech {
+      @apply w-40 h-5 px-5 py-1 flex rounded-md items-center justify-center text-center whitespace-nowrap;
       background-color: #ffb64f;
       font-size: 12px;
       line-height: 15px;
       letter-spacing: 0.02em;
     }
     .image {
+      @apply w-full h-40 bg-no-repeat rounded-lg;
+      background-size: cover;
     }
     .content {
       @apply h-40 overflow-hidden;
@@ -39,12 +48,58 @@
   .footer {
     @apply flex justify-between items-end;
 
+    .button_container {
+      @apply w-48 h-9;
+      .button_link {
+        @apply opacity-100;
+      }
+    }
+
     .button {
-      @apply bg-button w-48 h-9 rounded-md flex justify-center items-center;
+      @apply bg-button w-48 h-9 rounded-md flex justify-center items-center opacity-100 hover:opacity-80;
       font-size: 16px;
       line-height: 19px;
       letter-spacing: 0.02em;
       background-color: #7ce3e1;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .card_container {
+    width: 100%;
+
+    p,
+    a {
+      font-size: 14px;
+      line-height: 17px;
+      letter-spacing: 0.01em;
+    }
+
+    .main {
+      h3 {
+        font-size: 19px;
+        line-height: 23px;
+        letter-spacing: 0.01em;
+      }
+
+      .bage_anons,
+      .bage_digest,
+      .bage_speech,
+      .bage_tech {
+        font-size: 10px;
+        line-height: 12px;
+        letter-spacing: 0.01em;
+      }
+    }
+    .footer {
+      @apply flex justify-between items-end;
+
+      .button {
+        font-size: 14px;
+        line-height: 17px;
+        letter-spacing: 0.01em;
+      }
     }
   }
 }

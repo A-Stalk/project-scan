@@ -15,7 +15,7 @@ export const apiLoginUser = createAsyncThunk(
           expire: expire,
         };
       } else {
-        throw new Error(response.data.message);
+        throw new Error(response.status + ': ' + response.data.message);
       }
     } catch (error) {
       throw new Error(error);

@@ -7,11 +7,13 @@ import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { apiHistograms } from '../../../../redux/api/apiHistograms';
 import { selectHistograms } from '../../../../redux/slices/histogramsSlice';
+import { selectSearchFormData } from '../../../../redux/slices/searchFormDataSlice';
 import Spinner from '../../../spinner/Spinner';
 import styles from './Histograms.module.scss';
 
 const Histograms = () => {
   const histograms = useSelector(selectHistograms);
+  const searchData = useSelector(selectSearchFormData);
   const dispatch = useDispatch();
   const histogramContainerRef = useRef(null);
 
@@ -22,8 +24,10 @@ const Histograms = () => {
   const handleScroll = scrollOffset => {
     if (histogramContainerRef.current) {
       const container = histogramContainerRef.current;
-      const columnWidth =
-        container.offsetWidth / histograms?.data[0]?.data.length;
+      const columnElements = container.getElementsByClassName(
+        styles.histogram_columns,
+      );
+      const columnWidth = columnElements[0]?.offsetWidth;
       const scrollPosition = container.scrollLeft + columnWidth * scrollOffset;
 
       container.scrollTo({
@@ -35,7 +39,7 @@ const Histograms = () => {
   };
   // условие пока histograms полностью не загрузится показывать спиннер. в противном случае будет ошибка при попытке сортировки из-за undefined в [0].
 
-  if (!histograms?.data) {
+  if (!histograms?.data && !searchData) {
     return (
       <div className={styles.slider_container}>
         <img
@@ -68,11 +72,12 @@ const Histograms = () => {
         />
       </div>
     );
-  } else {
+  } else if (histograms.data) {
     // сортировка дат по возрастающей
     const sortedData = [...histograms.data[0].data].sort((a, b) =>
       moment(a.date).diff(moment(b.date)),
     );
+    console.log(histograms);
 
     return (
       <div className={styles.slider_container}>
@@ -81,7 +86,7 @@ const Histograms = () => {
           alt=''
           width={70}
           height={70}
-          onClick={() => handleScroll(-3)}
+          onClick={() => handleScroll(-1)}
           className={styles.left_arrow}
         />
         <div className={styles.main_container}>
@@ -108,7 +113,7 @@ const Histograms = () => {
           alt=''
           width={70}
           height={70}
-          onClick={() => handleScroll(3)}
+          onClick={() => handleScroll(1)}
           className={styles.right_arrow}
         />
       </div>

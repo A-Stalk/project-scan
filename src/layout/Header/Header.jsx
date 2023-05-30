@@ -11,6 +11,7 @@ import UserMenu from './UserMenu/UserMenu';
 
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const [isMobile, setIsMobile] = useState(
     window.matchMedia('(max-width: 767px)').matches,
   );

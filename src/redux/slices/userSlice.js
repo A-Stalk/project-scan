@@ -21,6 +21,7 @@ export const userSlice = createSlice({
       state.accessToken = null;
       state.expire = null;
       state.user = null;
+      localStorage.removeItem('root');
       localStorage.clear();
     },
   },

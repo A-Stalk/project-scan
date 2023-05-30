@@ -38,3 +38,60 @@
     opacity: 1;
   }
 }
+
+@media (max-width: 767px) {
+  .slider_container {
+    @apply items-center;
+  }
+  .main_container {
+    @apply w-full  flex-col;
+
+    .title_container {
+      @apply w-full flex-row;
+      font-size: 18px;
+      line-height: 22px;
+      letter-spacing: 0.01em;
+      border-end-start-radius: 0;
+    }
+    .histogram_container {
+      @apply w-full px-0 gap-0;
+
+      .histogram_columns {
+        @apply w-full px-4 flex-row justify-between gap-16;
+        font-size: 16px;
+        line-height: 19px;
+        letter-spacing: 0.02em;
+        border-right: none;
+      }
+      .spinner_container {
+        @apply w-full flex flex-row gap-3 self-center justify-center items-center;
+      }
+    }
+  }
+
+  .left_arrow,
+  .right_arrow {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 400px) {
+  .main_container {
+    .histogram_container {
+      .histogram_columns {
+        @apply gap-11;
+      }
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  .main_container {
+    .histogram_container {
+      .histogram_columns {
+        @apply gap-9;
+      }
+    }
+  }
+}
