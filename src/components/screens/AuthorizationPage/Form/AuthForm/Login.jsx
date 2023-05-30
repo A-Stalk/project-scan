@@ -4,7 +4,7 @@ import { Form, Formik } from 'formik';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { HOME_URL } from '../../../../../data.js';
+import { HOME_URL, NA_PAGE_URL } from '../../../../../data.js';
 import { apiLoginUser } from '../../../../../redux/api/apiLoginUser.js';
 import { AuthFormSchema } from '../../../../../utils/validation/schemas';
 import Spinner from '../../../../spinner/Spinner.jsx';
@@ -78,7 +78,7 @@ const Login = () => {
             >
               {isSubmitting ? <Spinner /> : 'Войти'}
             </button>
-            <a href=''>Восстановить пароль</a>
+            <a href={NA_PAGE_URL}>Восстановить пароль</a>
           </div>
           <FormFooter />
         </Form>
