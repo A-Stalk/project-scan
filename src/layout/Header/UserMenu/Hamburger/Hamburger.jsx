@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AUTH_URL } from '../../../../data.js';
 import {
   logoutProcess,
@@ -51,6 +51,15 @@ const Hamburger = () => {
         ref={menuRef}
         className={`${styles.menu} ${isOpen ? styles.slideIn : ''}`}
       >
+        {' '}
+        {!isLoggedIn && (
+          <div className={styles.user_unknown}>
+            <span className={styles.user_unknown_reg}>Зарегистрироваться</span>
+            <Link to={AUTH_URL}>
+              <button className={styles.user_unknown_button}>Войти</button>
+            </Link>
+          </div>
+        )}
         {isLoggedIn && (
           <div className={styles.user_info_container}>
             <div className={styles.user_info}>
@@ -63,9 +72,7 @@ const Hamburger = () => {
             />
           </div>
         )}
-
         <NavBar className={styles.NavBar} />
-
         {isLoggedIn && (
           <button className={styles.user_info_exit} onClick={handleLogOut}>
             Выйти
