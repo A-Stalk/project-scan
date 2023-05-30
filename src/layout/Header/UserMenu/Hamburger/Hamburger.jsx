@@ -1,9 +1,9 @@
 // Hamburger.jsx
 
-import avatar from '@/assets/ava_example.jpg';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import avatar from '../../../../assets/ava_example.jpg';
 import { AUTH_URL } from '../../../../data.js';
 import {
   logoutProcess,
